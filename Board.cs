@@ -15,18 +15,13 @@ using Chess_Game.Logic;
 
 namespace Chess_Game.WPF
 {
-    public class Board
+    public static class Board
     {
         public static bool StepPlayer { get; set; } = true;
         public static bool IsClick { get; set; } = false;
         public static Cell[,] Field { get; set; } = new Cell[8, 8];
         public static int[] XY { get; set; } = new int[2];
-        public Board()
-        {
-            GetBoard();
-
-        }
-        private void GetBoard()
+        public static void GetBoard()
         {
             for(var i = 0; i < 8; i++)
             {

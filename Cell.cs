@@ -20,7 +20,7 @@ namespace Chess_Game.WPF
         private bool IsClick { get; set; } = false;
         private bool IsFilled { get;}
         public Rectangle Rect { get; }
-        public Role Figure { get; set; } 
+        public Logic.Figure Figure { get; set; } 
         public Label FigureLabel { get; set; }
         private int CoorX { get;}
         private int CoorY { get;}
@@ -40,11 +40,11 @@ namespace Chess_Game.WPF
 
             CoorX = j; CoorY = i;
 
-            Figure = BoardModel.Board[i, j] ?? null;
+            Figure = BoardModel.Board[i, j] ?? null;                      
 
             FigureLabel = new Label
             {
-                Content = BoardModel.Board[i, j] == null ? null : BoardModel.Board[i, j].NameFigure.ToString()[0],
+                Content = BoardModel.Board[i, j]?.Role.ToString()[0],
                 FontSize = 35,
                 Foreground = Brushes.Blue,
             };
@@ -113,13 +113,13 @@ namespace Chess_Game.WPF
         }
         private void GetClickCells()
         {
-            if (Figure.NameFigure == Figures.Pawn)
+            if (Figure.Role == Roles.Pawn)
             {
                 ThisPawn();
             }
             else
             {
-                CorrectMove.GetMove(Figure.NameFigure);
+                CorrectMove.GetMove(Figure.Role);
                 ThisOtherFigures(1, 1);
                 ThisOtherFigures(-1, -1);
                 ThisOtherFigures(1, -1);

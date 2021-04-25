@@ -1,0 +1,33 @@
+﻿<Window x:Class="Chess_Game.WPF.Settings"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chess_Game.WPF"
+        mc:Ignorable="d"
+        Title="Settings" Height="450" Width="800">
+    <DockPanel>        
+        <Border VerticalAlignment="Center">
+            <StackPanel>
+                <Border>
+                    <UniformGrid Columns="4">
+                        <TextBlock Text="Цвет ячеек 1"/>
+                        <Button Click="ColorOneLeftClick"/>
+                        <Canvas x:Name="ColorOne"/>
+                        <Button/>
+                    </UniformGrid>
+                </Border>
+                <Border>
+                    <UniformGrid Columns="4">
+                        <TextBlock Text="Цвет ячеек 2"/>
+                        <Button/>
+                        <Canvas/>
+                        <Button/>
+                    </UniformGrid>
+                </Border>
+            </StackPanel>
+        </Border>
+    </DockPanel>
+</Window>

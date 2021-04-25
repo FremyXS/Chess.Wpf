@@ -43,5 +43,11 @@ namespace Chess_Game.WPF
             Close();
             game.Show();
         }
+
+        private void SettingsClick(object sender, RoutedEventArgs e)
+        {
+            var settings = new Settings();
+            settings.Show();
+        }
     }
 }
