@@ -1,0 +1,18 @@
+﻿<Window x:Class="Chess_Game.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chess_Game.WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel>
+        <Border Margin="130">
+            <UniformGrid Columns="1">
+                <Button Content="Новая игра" Margin="100 10 100 10" Click="NewGameClick"/>
+                <Button Content="Продолжить" Margin="100 10 100 10" Click="ContinueClick"/>
+                <Button Content="Выход" Margin="100 10 100 10"/>
+            </UniformGrid>
+        </Border>
+    </DockPanel>
+</Window>
