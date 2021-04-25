@@ -1,17 +1,16 @@
-﻿<Window x:Class="ChessGame_WPF_.NewGameWindow"
+﻿<Window x:Class="Chess_Game.WPF.GameShow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ChessGame_WPF_"
+        xmlns:local="clr-namespace:Chess_Game.WPF"
         mc:Ignorable="d"
-        Title="NewGameWindow" 
-        WindowStartupLocation="CenterScreen" Height="420" Width="400">
+        Title="GameShow" Height="420" Width="400" MinHeight="420" MinWidth="400">
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="5">
-            <Canvas x:Name="fieldCanvas" SizeChanged="Canvas_SizeChanged">
+        <Border Margin="5">
+            <Canvas x:Name="fieldCanvas" SizeChanged="FieldCanvas_SizeChanged">
 
-                </Canvas>
+            </Canvas>
         </Border>
     </Grid>
 </Window>

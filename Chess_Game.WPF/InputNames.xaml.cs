@@ -10,28 +10,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Chess_Game.Logic;
 
-namespace ChessGame_WPF_
+namespace Chess_Game.WPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для InputNames.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class InputNames : Window
     {
-        public MainWindow()
+        public InputNames()
         {
             InitializeComponent();
-
         }
 
-        private void newGame_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var game = new NewGameWindow();
-            game.Show();
+
+
+            var i = new GameShow();
+            Close();
+            i.Show();
             
-                     
         }
     }
 }
