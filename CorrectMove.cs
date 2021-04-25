@@ -10,25 +10,25 @@ namespace Chess_Game.Logic
     {
         public static List<int> DiffY { get; private set; }
         public static List<int> DiffX { get; private set; }
-        public static void GetMove(Figures figur)
+        public static void GetMove(Roles figur)
         {
             DiffY = new List<int>();
             DiffX = new List<int>();
             switch (figur)
             {
-                case Figures.King:
+                case Roles.King:
                     GetMoveKing();
                     break;
-                case Figures.Queen:
+                case Roles.Queen:
                     GetMoveQueen();
                     break;
-                case Figures.Rook:
+                case Roles.Rook:
                     GetMoveRook();
                     break;
-                case Figures.Horse:
+                case Roles.Horse:
                     GetMoveHorse();
                     break;
-                case Figures.Bishop:
+                case Roles.Bishop:
                     GetMoveBishop();
                     break;
             }
@@ -72,11 +72,7 @@ namespace Chess_Game.Logic
             }
         }
         private static void GetMoveQueen()
-        {
-            for (var i = 1; i < 8; i++)
-            {
-                DiffY.Add(i); DiffX.Add(i);
-            }
+        { 
             for (var i = 1; i < 8; i++)
             {
                 DiffY.Add(i); DiffX.Add(0);
@@ -84,6 +80,10 @@ namespace Chess_Game.Logic
             for (var i = 1; i < 8; i++)
             {
                 DiffY.Add(0); DiffX.Add(i);
+            }
+            for (var i = 1; i < 8; i++)
+            {
+                DiffY.Add(i); DiffX.Add(i);
             }
         }
     }

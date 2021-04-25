@@ -17,10 +17,9 @@ namespace Chess_Game.Logic
         }
         public static void LoadInfo()
         {
-            string txtInfo = File.ReadAllText("save1.txt").Replace("'", "\"");
-            var tes = JsonConvert.DeserializeObject<Role[,]>(txtInfo);
+            string txtInfo = File.ReadAllText("save1.txt");
+            var tes = JsonConvert.DeserializeObject<Figure[,]>(txtInfo);
             BoardModel.Board = tes;
-
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Chess_Game.Logic
 {   
-    public enum Figures
+    public enum Roles
     {
-        Pawn, King, Queen, Rook, Horse, Bishop
+       King, Queen, Rook, Horse, Bishop, Pawn
     }    
     public enum Colors
     {
@@ -16,40 +16,40 @@ namespace Chess_Game.Logic
     }
     public class BoardModel
     {
-        public static Role[,] Board { get; set; } 
+        public static Figure[,] Board { get; set; } 
 
         public static void GetStartBoard()
         {
-            Board = new Role[8, 8];
+            Board = new Figure[8, 8];
             for(var i = 0; i<8; i++)
             {
-                Board[1, i] = new Role(Figures.Pawn, Colors.Black);
-                Board[6, i] = new Role(Figures.Pawn, Colors.White);
+                Board[1, i] = new Figure(Roles.Pawn, Colors.Black);
+                Board[6, i] = new Figure(Roles.Pawn, Colors.White);
 
                 if(i == 0 || i == 7)
                 {
-                    Board[0, i] = new Role(Figures.Rook, Colors.Black);
-                    Board[7, i] = new Role(Figures.Rook, Colors.White);
+                    Board[0, i] = new Figure(Roles.Rook, Colors.Black);
+                    Board[7, i] = new Figure(Roles.Rook, Colors.White);
                 }
                 else if(i == 1 || i == 6)
                 {
-                    Board[0, i] = new Role(Figures.Horse, Colors.Black);
-                    Board[7, i] = new Role(Figures.Horse, Colors.White);
+                    Board[0, i] = new Figure(Roles.Horse, Colors.Black);
+                    Board[7, i] = new Figure(Roles.Horse, Colors.White);
                 }
                 else if (i == 2 || i == 5)
                 {
-                    Board[0, i] = new Role(Figures.Bishop, Colors.Black);
-                    Board[7, i] = new Role(Figures.Bishop, Colors.White);
+                    Board[0, i] = new Figure(Roles.Bishop, Colors.Black);
+                    Board[7, i] = new Figure(Roles.Bishop, Colors.White);
                 }
                 else if (i == 3)
                 {
-                    Board[0, i] = new Role(Figures.Queen, Colors.Black);
-                    Board[7, i] = new Role(Figures.Queen, Colors.White);
+                    Board[0, i] = new Figure(Roles.Queen, Colors.Black);
+                    Board[7, i] = new Figure(Roles.Queen, Colors.White);
                 }
                 else
                 {
-                    Board[0, i] = new Role(Figures.King, Colors.Black);
-                    Board[7, i] = new Role(Figures.King, Colors.White);
+                    Board[0, i] = new Figure(Roles.King, Colors.Black);
+                    Board[7, i] = new Figure(Roles.King, Colors.White);
                 }
             }
 
