@@ -23,7 +23,7 @@ namespace Chess_Game.WPF
     {
         public GameShow()
         {
-            new Board();
+            Board.GetBoard();
             InitializeComponent();
             this.Closing += MainWindow_Closing;
         }
