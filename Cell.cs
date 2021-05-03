@@ -19,7 +19,7 @@ namespace Chess_Game.WPF
     {
         private bool IsClick { get; set; } = false;
         private bool IsFilled { get;}
-        public Rectangle Rect { get; }
+        public Rectangle Rect { get; set; }
         public Logic.Figure Figure { get; set; } 
         public Label FigureLabel { get; set; }
         private int CoorX { get;}

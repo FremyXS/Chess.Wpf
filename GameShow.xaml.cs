@@ -37,22 +37,47 @@ namespace Chess_Game.WPF
 
         private void FieldCanvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            double height = fieldCanvas.ActualHeight / 9;
+
             fieldCanvas.Children.Clear();
 
             for (int i = 0; i < 8; i++)
             {
+                var lab = new Label { Content = $"{i + 1}", FontSize=height/3 };
+                fieldCanvas.Children.Add(lab);
+                Canvas.SetTop(lab, i * height +(height /6));
+                Canvas.SetLeft(lab, (fieldCanvas.ActualWidth - fieldCanvas.ActualHeight) / 2);
+
                 for (var j = 0; j < 8; j++)
                 {
+                    Board.Field[i, j].Rect.Height = height;
+                    Board.Field[i, j].Rect.Width = height;
                     fieldCanvas.Children.Add(Board.Field[i, j].Rect);
                     fieldCanvas.Children.Add(Board.Field[i, j].FigureLabel);
 
-                    Canvas.SetTop(Board.Field[i, j].Rect, i * 70);
-                    Canvas.SetLeft(Board.Field[i, j].Rect, j * 70);
-                    Canvas.SetTop(Board.Field[i, j].FigureLabel, i * 70);
-                    Canvas.SetLeft(Board.Field[i, j].FigureLabel, j * 70);
+                    Canvas.SetTop(Board.Field[i, j].Rect, (i) * height );
+                    Canvas.SetLeft(Board.Field[i, j].Rect, (j+1) * height + (fieldCanvas.ActualWidth - fieldCanvas.ActualHeight)/2);
+                    Canvas.SetTop(Board.Field[i, j].FigureLabel, (i) * height);
+                    Canvas.SetLeft(Board.Field[i, j].FigureLabel, (j+1) * height + (fieldCanvas.ActualWidth - fieldCanvas.ActualHeight) / 2);
+                                      
                 }
             }
+
+            for(var i = 'A'; i <= 'H'; i++)
+            {
+                var lab = new Label { Content = i.ToString(), FontSize = height / 3 };
+                fieldCanvas.Children.Add(lab);
+                Canvas.SetTop(lab, 8 * height);
+                Canvas.SetLeft(lab, (i -'A' +1) * height + (fieldCanvas.ActualWidth - fieldCanvas.ActualHeight) / 2);
+            }
             
+        }
+        private void Placement(int i, double height)
+        {
+            var lab = new Label { Content = $"{i + 1}", FontSize = height / 3 };
+            fieldCanvas.Children.Add(lab);
+            Canvas.SetTop(lab, i * height + (height / 6));
+            Canvas.SetLeft(lab, (fieldCanvas.ActualWidth - fieldCanvas.ActualHeight) / 2);
         }
 
 
