@@ -32,7 +32,7 @@ namespace Chess_Game.WPF
             {
                 Height = 70,
                 Width = 70,
-                Fill = IsFilled ? Brushes.SandyBrown : Brushes.White,
+                Fill = IsFilled ? Settings.ColorOne : Settings.ColorTwo,
                 Stroke = Brushes.Black,
             };
 
@@ -64,7 +64,7 @@ namespace Chess_Game.WPF
             {
                 if (!IsClick && Figure != null && Figure.Color == color)
                 {
-                    Rect.Fill = Brushes.Green;
+                    Rect.Fill = Settings.ColorStep;
                     Board.IsClick = true;
                     IsClick = true;
                     Board.XY[0] = CoorY;
@@ -80,7 +80,7 @@ namespace Chess_Game.WPF
                 }
                 else if (IsClick && Figure != null && Figure.Color == color)
                 {
-                    Rect.Fill = IsFilled ? Brushes.SandyBrown : Brushes.White;
+                    Rect.Fill = IsFilled ? Settings.ColorOne : Settings.ColorTwo;
                     Board.IsClick = false;
                     IsClick = false;
                     DeleteIsClick();
@@ -105,7 +105,7 @@ namespace Chess_Game.WPF
             Board.Field[Board.XY[0], Board.XY[1]].IsClick = false;
             Board.IsClick = false;
             Board.Field[Board.XY[0], Board.XY[1]].Rect.Fill =
-                Board.Field[Board.XY[0], Board.XY[1]].IsFilled ? Brushes.SandyBrown : Brushes.White;
+                Board.Field[Board.XY[0], Board.XY[1]].IsFilled ? Settings.ColorOne : Settings.ColorTwo;
 
             DeleteIsClick();
 
@@ -162,7 +162,7 @@ namespace Chess_Game.WPF
         {
             if (Board.Field[CoorY + step, CoorX].Figure == null)
             {
-                Board.Field[CoorY + step, CoorX].Rect.Fill = Brushes.Green;
+                Board.Field[CoorY + step, CoorX].Rect.Fill = Settings.ColorStep;
                 Board.Field[CoorY + step, CoorX].IsClick = true;
             }
         }
@@ -174,7 +174,7 @@ namespace Chess_Game.WPF
                 && Board.Field[diffY, diffX].Figure.Color == (Board.StepPlayer ? Logic.Colors.Black : Logic.Colors.White))
                 {
                     Board.Field[diffY, diffX].IsClick = true;
-                    Board.Field[diffY, diffX].Rect.Fill = Brushes.Red;
+                    Board.Field[diffY, diffX].Rect.Fill = Settings.ColorEnemy;
                 }
             }
         }
@@ -184,7 +184,7 @@ namespace Chess_Game.WPF
             {
                 if (Board.Field[diffY, diffX].Figure == null)
                 {
-                    Board.Field[diffY, diffX].Rect.Fill = Brushes.Green;
+                    Board.Field[diffY, diffX].Rect.Fill = Settings.ColorStep;
                     Board.Field[diffY, diffX].IsClick = true;
                     swtch++;
                 }
@@ -192,7 +192,7 @@ namespace Chess_Game.WPF
                 {
                     if(Board.Field[diffY, diffX].Figure.Color == (Board.StepPlayer? Logic.Colors.Black : Logic.Colors.White))
                     {
-                        Board.Field[diffY, diffX].Rect.Fill = Brushes.Red;
+                        Board.Field[diffY, diffX].Rect.Fill = Settings.ColorEnemy;
                         Board.Field[diffY, diffX].IsClick = true;
                         swtch++;
                     }
@@ -209,7 +209,7 @@ namespace Chess_Game.WPF
                 if (i.IsClick)
                 {
                     i.IsClick = false;
-                    i.Rect.Fill = i.IsFilled ? Brushes.SandyBrown : Brushes.White;
+                    i.Rect.Fill = i.IsFilled ? Settings.ColorOne : Settings.ColorTwo;
                 }
             }
         }

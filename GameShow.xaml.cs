@@ -30,7 +30,7 @@ namespace Chess_Game.WPF
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            Info.SaveInfo();
+            Info.SaveGame();
             var win = new MainWindow();
             win.Show();
         }
