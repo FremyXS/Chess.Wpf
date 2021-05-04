@@ -16,7 +16,9 @@ namespace Chess_Game.Logic
     }
     public class BoardModel
     {
-        public static Figure[,] Board { get; set; } 
+        public static Figure[,] Board { get; set; }
+        public static Player PlayerOne { get; set; }
+        public static Player PlayerTwo { get; set; }
 
         public static void GetStartBoard()
         {

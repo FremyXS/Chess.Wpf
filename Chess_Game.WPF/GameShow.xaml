@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="GameShow" Height="420" Width="400" MinHeight="420" MinWidth="400">
     <Grid>
-        <Border Margin="5">
-            <Canvas x:Name="fieldCanvas" SizeChanged="FieldCanvas_SizeChanged">
+        <Border Margin="5" BorderThickness="2" BorderBrush="Black">
+            <Border Margin="10" BorderThickness="2" BorderBrush="Black" x:Name="fieldBorder">
+                <Canvas x:Name="fieldCanvas" SizeChanged="FieldCanvas_SizeChanged">
 
-            </Canvas>
+                </Canvas>
+            </Border>
         </Border>
     </Grid>
 </Window>

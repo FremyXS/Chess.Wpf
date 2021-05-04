@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Chess_Game.Logic;
+using Newtonsoft.Json;
 
 namespace Chess_Game.WPF
 {
@@ -24,11 +26,22 @@ namespace Chess_Game.WPF
         public MainWindow()
         {
             InitializeComponent();
+            this.Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            string txtInfo = File.ReadAllText("data/settings.txt");
+            var tes = JsonConvert.DeserializeObject<Brush[]>(txtInfo);
+
+            Settings.ColorOne = tes[0];
+            Settings.ColorTwo = tes[1];
+            Settings.ColorStep = tes[2];
+            Settings.ColorEnemy = tes[3];
         }
 
         private void NewGameClick(object sender, RoutedEventArgs e)
         {
-
             BoardModel.GetStartBoard();
             var game = new InputNames();
             Close();
@@ -38,10 +51,17 @@ namespace Chess_Game.WPF
 
         private void ContinueClick(object sender, RoutedEventArgs e)
         {
-            Info.LoadInfo();
-            var game = new GameShow();
+
+            var cont = new ContinueWindow();
             Close();
-            game.Show();
+            cont.Show();
+        }
+
+        private void SettingsClick(object sender, RoutedEventArgs e)
+        {
+            var settings = new SettingsWindow();
+            Close();
+            settings.Show();
         }
     }
 }
