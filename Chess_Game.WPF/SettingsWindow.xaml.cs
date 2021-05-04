@@ -52,7 +52,7 @@ namespace Chess_Game.WPF
                 ColorOne.Background, ColorTwo.Background, ColorStep.Background, ColorEnemy.Background },
                 Formatting.Indented);
 
-            File.WriteAllText("settings.txt", serialized);
+            File.WriteAllText("data/settings.txt", serialized);
 
             var menu = new MainWindow();
             menu.Show();           

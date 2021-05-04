@@ -30,7 +30,8 @@ namespace Chess_Game.WPF
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            Info.SaveGame();
+            Info.SaveGame(BoardModel.PlayerOne.Name, BoardModel.PlayerTwo.Name);
+            Info.SavePlayers(BoardModel.PlayerOne, BoardModel.PlayerTwo);
             var win = new MainWindow();
             win.Show();
         }
@@ -44,14 +45,18 @@ namespace Chess_Game.WPF
             for (int i = 0; i < 8; i++)
             {
                 var lab = new Label { Content = $"{i + 1}", FontSize=height/3 };
-                fieldCanvas.Children.Add(lab);
-                Canvas.SetTop(lab, i * height +(height /6));
-                Canvas.SetLeft(lab, (fieldCanvas.ActualWidth - fieldCanvas.ActualHeight) / 2);
+
+                Placement(
+                    lab,
+                    i * height + (height / 6),
+                    (fieldCanvas.ActualWidth - fieldCanvas.ActualHeight) / 2
+                );
 
                 for (var j = 0; j < 8; j++)
                 {
                     Board.Field[i, j].Rect.Height = height;
                     Board.Field[i, j].Rect.Width = height;
+                    Board.Field[i, j].FigureLabel.FontSize = height / 2;
                     fieldCanvas.Children.Add(Board.Field[i, j].Rect);
                     fieldCanvas.Children.Add(Board.Field[i, j].FigureLabel);
 
@@ -66,18 +71,19 @@ namespace Chess_Game.WPF
             for(var i = 'A'; i <= 'H'; i++)
             {
                 var lab = new Label { Content = i.ToString(), FontSize = height / 3 };
-                fieldCanvas.Children.Add(lab);
-                Canvas.SetTop(lab, 8 * height);
-                Canvas.SetLeft(lab, (i -'A' +1) * height + (fieldCanvas.ActualWidth - fieldCanvas.ActualHeight) / 2);
+                Placement(
+                    lab,
+                    8 * height,
+                    (i - 'A' + 1) * height + (fieldCanvas.ActualWidth - fieldCanvas.ActualHeight) / 2
+                );
             }
             
         }
-        private void Placement(int i, double height)
-        {
-            var lab = new Label { Content = $"{i + 1}", FontSize = height / 3 };
+        private void Placement(Label lab, double x, double y)
+        {            
             fieldCanvas.Children.Add(lab);
-            Canvas.SetTop(lab, i * height + (height / 6));
-            Canvas.SetLeft(lab, (fieldCanvas.ActualWidth - fieldCanvas.ActualHeight) / 2);
+            Canvas.SetTop(lab, x);
+            Canvas.SetLeft(lab, y);
         }
 
 

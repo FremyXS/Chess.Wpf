@@ -31,7 +31,7 @@ namespace Chess_Game.WPF
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            string txtInfo = File.ReadAllText("settings.txt");
+            string txtInfo = File.ReadAllText("data/settings.txt");
             var tes = JsonConvert.DeserializeObject<Brush[]>(txtInfo);
 
             Settings.ColorOne = tes[0];
@@ -51,10 +51,10 @@ namespace Chess_Game.WPF
 
         private void ContinueClick(object sender, RoutedEventArgs e)
         {
-            Info.LoadGame();
-            var game = new GameShow();
+
+            var cont = new ContinueWindow();
             Close();
-            game.Show();
+            cont.Show();
         }
 
         private void SettingsClick(object sender, RoutedEventArgs e)

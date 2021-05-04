@@ -17,8 +17,6 @@ namespace Chess_Game.WPF
 {
     public static class Board
     {
-        public static Player PlayerOne { get; set; }
-        public static Player PlayerTwo { get; set; }
         public static bool StepPlayer { get; set; } = true;
         public static bool IsClick { get; set; } = false;
         public static Cell[,] Field { get; set; } = new Cell[8, 8];

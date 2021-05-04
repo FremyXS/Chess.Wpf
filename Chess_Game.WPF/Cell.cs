@@ -30,8 +30,6 @@ namespace Chess_Game.WPF
 
             Rect = new Rectangle
             {
-                Height = 70,
-                Width = 70,
                 Fill = IsFilled ? Settings.ColorOne : Settings.ColorTwo,
                 Stroke = Brushes.Black,
             };
@@ -45,7 +43,6 @@ namespace Chess_Game.WPF
             FigureLabel = new Label
             {
                 Content = BoardModel.Board[i, j]?.Role.ToString()[0],
-                FontSize = 35,
                 Foreground = Brushes.Blue,
             };
 
@@ -148,7 +145,7 @@ namespace Chess_Game.WPF
             {
                 CorrectMovePawn(step);
 
-                if (CoorY == startY)
+                if (CoorY == startY && Board.Field[CoorY + step, CoorX].Figure == null)
                 {
                     CorrectMovePawn(step*2);
                 }

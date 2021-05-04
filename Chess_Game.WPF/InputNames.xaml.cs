@@ -27,11 +27,11 @@ namespace Chess_Game.WPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Board.PlayerOne = new Player(namePlayerOne.Text);
-            Board.PlayerTwo = new Player(namePlayerTwo.Text);
+            BoardModel.PlayerOne = new Player(namePlayerOne.Text);
+            BoardModel.PlayerTwo = new Player(namePlayerTwo.Text);
 
-            if(CheckName(Board.PlayerOne, namePlayerOne.Text) 
-            && CheckName(Board.PlayerTwo, namePlayerTwo.Text))
+            if(CheckName(BoardModel.PlayerOne, namePlayerOne.Text) 
+            && CheckName(BoardModel.PlayerTwo, namePlayerTwo.Text))
             {
                 var game = new GameShow();
                 Close();
