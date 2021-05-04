@@ -1,0 +1,12 @@
+D:\proga\Chess_Game\Chess_Game.Logic\bin\Debug\net5.0\Chess_Game.Logic.deps.json
+D:\proga\Chess_Game\Chess_Game.Logic\bin\Debug\net5.0\Chess_Game.Logic.dll
+D:\proga\Chess_Game\Chess_Game.Logic\bin\Debug\net5.0\ref\Chess_Game.Logic.dll
+D:\proga\Chess_Game\Chess_Game.Logic\bin\Debug\net5.0\Chess_Game.Logic.pdb
+D:\proga\Chess_Game\Chess_Game.Logic\obj\Debug\net5.0\Chess_Game.Logic.csprojAssemblyReference.cache
+D:\proga\Chess_Game\Chess_Game.Logic\obj\Debug\net5.0\Chess_Game.Logic.GeneratedMSBuildEditorConfig.editorconfig
+D:\proga\Chess_Game\Chess_Game.Logic\obj\Debug\net5.0\Chess_Game.Logic.AssemblyInfoInputs.cache
+D:\proga\Chess_Game\Chess_Game.Logic\obj\Debug\net5.0\Chess_Game.Logic.AssemblyInfo.cs
+D:\proga\Chess_Game\Chess_Game.Logic\obj\Debug\net5.0\Chess_Game.Logic.csproj.CoreCompileInputs.cache
+D:\proga\Chess_Game\Chess_Game.Logic\obj\Debug\net5.0\Chess_Game.Logic.dll
+D:\proga\Chess_Game\Chess_Game.Logic\obj\Debug\net5.0\ref\Chess_Game.Logic.dll
+D:\proga\Chess_Game\Chess_Game.Logic\obj\Debug\net5.0\Chess_Game.Logic.pdb
