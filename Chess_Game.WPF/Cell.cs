@@ -84,7 +84,15 @@ namespace Chess_Game.WPF
                 }
                 else if (IsClick && Figure != null && Figure.Color == antiColor)
                 {
+                    if (!Board.StepPlayer) BoardModel.PlayerOne.AddPoints(Figure.Role);
+                    else                   BoardModel.PlayerTwo.AddPoints(Figure.Role);
+
                     GetMoving();
+
+                    if (Board.StepPlayer) BoardModel.PlayerOne.DropFigure();
+                    else                  BoardModel.PlayerTwo.DropFigure();
+
+                    Caunter.UpdateCounter();
                 }
             }
         }

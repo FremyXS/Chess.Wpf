@@ -12,25 +12,25 @@ namespace Chess_Game.WPF
     public class Saves
     {
         private ContinueWindow Cw { get; set; }
-        private string Link { get; set; }
-        public TextBlock Names { get; }
+        public TextBlock InfoText { get; }
+        public string[] Players { get; }
         public Saves(string link, ContinueWindow cw)
         {
+            Players = link.Split(new char[] { '\\', '_' });
             Cw = cw;
-            Link = link;
-            Names = new TextBlock
+            InfoText = new TextBlock
             {
-                Text = link.Split(new char[] { '\\' })[1],
+                Text = Players[1] + "\n" + "VS" + "\n" + Players[2],
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 FontSize = 35,
             };
 
-            Names.MouseLeftButtonDown += Names_MouseLeftButtonDown;
+            InfoText.MouseLeftButtonDown += Names_MouseLeftButtonDown;
         }
 
         private void Names_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Info.LoadGame(Names.Text.Split(new char[] { '_'})[0], Names.Text.Split(new char[] { '_' })[1]);
+            Info.LoadGame(Players[1], Players[2]);
             var game = new GameShow();
             Cw.Close();
             game.Show();

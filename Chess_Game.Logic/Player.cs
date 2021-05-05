@@ -9,7 +9,6 @@ namespace Chess_Game.Logic
     public class Player
     {
         public string Name{ get;}
-
         public int CountFigures { get; set; } = 16;
         public int CountPoints { get; set; } = 0;
         public Player(string name)
@@ -28,12 +27,16 @@ namespace Chess_Game.Logic
                     CountPoints += 100;
                     break;
                 case Roles.Queen:
+                    CountPoints += 50;
                     break;
                 case Roles.Rook:
+                    CountPoints += 20;
                     break;
                 case Roles.Horse:
+                    CountPoints += 20;
                     break;
                 case Roles.Bishop:
+                    CountPoints += 20;
                     break;
                 case Roles.Pawn:
                     CountPoints += 10;

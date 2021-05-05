@@ -25,6 +25,8 @@ namespace Chess_Game.WPF
         {
             Board.GetBoard();
             InitializeComponent();
+            new Caunter(counterGrid);
+
             this.Closing += MainWindow_Closing;
         }
 
@@ -41,6 +43,7 @@ namespace Chess_Game.WPF
             double height = fieldCanvas.ActualHeight / 9;
 
             fieldCanvas.Children.Clear();
+
 
             for (int i = 0; i < 8; i++)
             {
