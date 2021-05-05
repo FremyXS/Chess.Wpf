@@ -27,23 +27,23 @@ namespace Chess_Game.WPF
             InitializeComponent();
 
         }
-        
         private void ContinueWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach (var i in Directory.GetDirectories("data"))
+            foreach (var i in Directory.GetDirectories("data/Saves"))
             {
                 SavesList.Add(new Saves(i.ToString(), this));
             }
-        }
 
-        private void playersBorder_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            playersStack.Children.Clear();
-
-            foreach(var i in SavesList)
+            foreach (var i in SavesList)
             {
-                playersStack.Children.Add(i.Names);
-
+                var bor = new Border
+                {
+                    BorderThickness = new Thickness(2),
+                    BorderBrush = Brushes.Black,
+                    Padding = new Thickness(5),
+                };
+                bor.Child = i.InfoText;
+                playersStack.Children.Add(bor);
             }
         }
 

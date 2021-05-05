@@ -23,6 +23,7 @@ namespace Chess_Game.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        MediaPlayer Player { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -38,6 +39,10 @@ namespace Chess_Game.WPF
             Settings.ColorTwo = tes[1];
             Settings.ColorStep = tes[2];
             Settings.ColorEnemy = tes[3];
+
+            Player = new MediaPlayer();
+            Player.Open(new Uri("data/Music/home.mp3", UriKind.Relative));
+            Player.Play();
         }
 
         private void NewGameClick(object sender, RoutedEventArgs e)
@@ -46,12 +51,10 @@ namespace Chess_Game.WPF
             var game = new InputNames();
             Close();
             game.Show();
-
         }
 
         private void ContinueClick(object sender, RoutedEventArgs e)
         {
-
             var cont = new ContinueWindow();
             Close();
             cont.Show();
@@ -62,6 +65,13 @@ namespace Chess_Game.WPF
             var settings = new SettingsWindow();
             Close();
             settings.Show();
+        }
+
+        private void RatingClick(object sender, RoutedEventArgs e)
+        {
+            var rating = new RatingWindow();
+            Close();
+            rating.Show();
         }
     }
 }

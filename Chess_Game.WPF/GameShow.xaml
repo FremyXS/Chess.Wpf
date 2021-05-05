@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:Chess_Game.WPF"
         mc:Ignorable="d"
         Title="GameShow" Height="420" Width="400" MinHeight="420" MinWidth="400">
-    <Grid>
+    <DockPanel>
+        <Border DockPanel.Dock="Top">
+            <UniformGrid Columns="4" Rows="1" Name="counterGrid">
+                
+            </UniformGrid>
+        </Border>
         <Border Margin="5" BorderThickness="2" BorderBrush="Black">
             <Border Margin="10" BorderThickness="2" BorderBrush="Black" x:Name="fieldBorder">
                 <Canvas x:Name="fieldCanvas" SizeChanged="FieldCanvas_SizeChanged">
@@ -14,5 +19,5 @@
                 </Canvas>
             </Border>
         </Border>
-    </Grid>
+    </DockPanel>
 </Window>

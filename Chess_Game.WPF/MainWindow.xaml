@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
-        <Border Margin="130">
+        <Border Margin="100">
             <UniformGrid Columns="1">
                 <Button Content="Новая игра" Margin="100 10 100 10" Click="NewGameClick"/>
                 <Button Content="Продолжить" Margin="100 10 100 10" Click="ContinueClick"/>
                 <Button Content="Настройки" Margin="100 10 100 10" Click="SettingsClick"/>
+                <Button Content="Рейтинг" Margin="100 10 100 10" Click="RatingClick"/>
                 <Button Content="Выход" Margin="100 10 100 10"/>
             </UniformGrid>
         </Border>
