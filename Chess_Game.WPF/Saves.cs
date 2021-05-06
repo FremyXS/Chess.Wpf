@@ -32,6 +32,7 @@ namespace Chess_Game.WPF
         {
             Info.LoadGame(Players[1], Players[2]);
             var game = new GameShow();
+            Board.GameIsOpen = true;
             Cw.Close();
             game.Show();
             

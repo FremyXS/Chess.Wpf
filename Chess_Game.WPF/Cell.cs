@@ -20,33 +20,39 @@ namespace Chess_Game.WPF
         private bool IsClick { get; set; } = false;
         private bool IsFilled { get;}
         public Rectangle Rect { get; set; }
-        public Logic.Figure Figure { get; set; } 
+        private Logic.Figure Figure { get; set; } 
         public Label FigureLabel { get; set; }
         private int CoorX { get;}
         private int CoorY { get;}
-        public Cell(int i, int j)
+        public Image image { get; set; }
+        public Cell(int coorX, int coorY)
         {
-            IsFilled = j % 2 == 0 ? i % 2 == 0 : i % 2 != 0;
+            CoorX = coorY; 
+            CoorY = coorX;
+
+            IsFilled = CoorY % 2 == 0 ? CoorX % 2 == 0 : CoorX % 2 != 0;
 
             Rect = new Rectangle
             {
                 Fill = IsFilled ? Settings.ColorOne : Settings.ColorTwo,
                 Stroke = Brushes.Black,
+            };                                 
+
+            Figure = BoardModel.Board[coorX, coorY] ?? null;
+
+            image = new Image
+            {
+                Source = BoardModel.Board[coorX, coorY]!=null?
+                    BitmapFrame.Create(new Uri(Board.GetImage(Figure.Role, Figure.Color) , UriKind.Relative)) : null,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
 
             Rect.MouseLeftButtonDown += Cell_MouseLeftButtonDown;
-
-            CoorX = j; CoorY = i;
-
-            Figure = BoardModel.Board[i, j] ?? null;                      
-
-            FigureLabel = new Label
-            {
-                Content = BoardModel.Board[i, j]?.Role.ToString()[0],
-                Foreground = Brushes.Blue,
-            };
+            image.MouseLeftButtonDown += Cell_MouseLeftButtonDown;
 
         }
+
         private void Cell_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -54,6 +60,7 @@ namespace Chess_Game.WPF
                 OneStep(Logic.Colors.White, Logic.Colors.Black);
             else
                 OneStep(Logic.Colors.Black, Logic.Colors.White);
+
         }
         private void OneStep(Logic.Colors color, Logic.Colors antiColor)
         {
@@ -84,15 +91,19 @@ namespace Chess_Game.WPF
                 }
                 else if (IsClick && Figure != null && Figure.Color == antiColor)
                 {
-                    if (!Board.StepPlayer) BoardModel.PlayerOne.AddPoints(Figure.Role);
-                    else                   BoardModel.PlayerTwo.AddPoints(Figure.Role);
+                    if (Board.StepPlayer) 
+                        BoardModel.PlayerOne.AddPoints(Figure.Role);
+                    else 
+                        BoardModel.PlayerTwo.AddPoints(Figure.Role);
+
+                    Logic.Figure dedFigure = Figure;
 
                     GetMoving();
 
-                    if (Board.StepPlayer) BoardModel.PlayerOne.DropFigure();
-                    else                  BoardModel.PlayerTwo.DropFigure();
+                    CheckWin(dedFigure);
 
-                    Caunter.UpdateCounter();
+                    Counter.UpdateCounter();
+
                 }
             }
         }
@@ -104,8 +115,8 @@ namespace Chess_Game.WPF
             Figure = Board.Field[Board.XY[0], Board.XY[1]].Figure;
             Board.Field[Board.XY[0], Board.XY[1]].Figure = null;
 
-            FigureLabel.Content = Board.Field[Board.XY[0], Board.XY[1]].FigureLabel.Content;
-            Board.Field[Board.XY[0], Board.XY[1]].FigureLabel.Content = null;
+            image.Source = Board.Field[Board.XY[0], Board.XY[1]].image.Source;
+            Board.Field[Board.XY[0], Board.XY[1]].image.Source = null;
 
             Board.Field[Board.XY[0], Board.XY[1]].IsClick = false;
             Board.IsClick = false;
@@ -141,10 +152,10 @@ namespace Chess_Game.WPF
 
         private void ThisOtherFigures(int x, int y)
         {
-            int swtch = 0;
+            int transfer = 0;
             for (var i = 0; i < CorrectMove.DiffX.Count; i++)
             {
-                Correct(CoorY + (CorrectMove.DiffY[i] * x), CoorX + (CorrectMove.DiffX[i] * y), ref i, ref swtch);
+                Correct(CoorY + (CorrectMove.DiffY[i] * x), CoorX + (CorrectMove.DiffX[i] * y), ref i, ref transfer);
             }
         }
         private void StepPawn(int startY, int step)
@@ -183,7 +194,7 @@ namespace Chess_Game.WPF
                 }
             }
         }
-        private void Correct(int diffY, int diffX, ref int i, ref int swtch)
+        private void Correct(int diffY, int diffX, ref int i, ref int transfer)
         {
             if (diffY >= 0 && diffY < 8 && diffX >= 0 && diffX < 8)
             {
@@ -191,7 +202,7 @@ namespace Chess_Game.WPF
                 {
                     Board.Field[diffY, diffX].Rect.Fill = Settings.ColorStep;
                     Board.Field[diffY, diffX].IsClick = true;
-                    swtch++;
+                    transfer++;
                 }
                 else
                 {
@@ -199,24 +210,47 @@ namespace Chess_Game.WPF
                     {
                         Board.Field[diffY, diffX].Rect.Fill = Settings.ColorEnemy;
                         Board.Field[diffY, diffX].IsClick = true;
-                        swtch++;
                     }
 
-                    i += CorrectMove.DiffX.Count / 3 - swtch - 1;
-                    swtch = 0;
+                    i += CorrectMove.DiffX.Count / 3 - transfer - 1;
+                    transfer = 0;
                 }
             }
         }
         private void DeleteIsClick()
         {
-            foreach (var i in Board.Field)
+            foreach (var cell in Board.Field)
             {
-                if (i.IsClick)
+                if (cell.IsClick)
                 {
-                    i.IsClick = false;
-                    i.Rect.Fill = i.IsFilled ? Settings.ColorOne : Settings.ColorTwo;
+                    cell.IsClick = false;
+                    cell.Rect.Fill = cell.IsFilled ? Settings.ColorOne : Settings.ColorTwo;
                 }
             }
+        }
+        private void CheckWin(Logic.Figure figure)
+        {
+            if (figure.Role == Roles.King)
+            {
+                if (figure.Color == Logic.Colors.White)
+                {
+                    GetWin(BoardModel.PlayerTwo);
+                }
+                else
+                {
+                    GetWin(BoardModel.PlayerOne);
+                }
+            }
+        }
+        private void GetWin(Player player)
+        {
+            player.Win();
+
+            MessageBox.Show($"Победил игрок:{player.Name}");
+
+            BoardModel.GetStartBoard();
+            Board.GetBoard();
+            WpfDrawer.GrawCanvas();
         }
     }
 }

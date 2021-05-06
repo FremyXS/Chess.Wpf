@@ -17,13 +17,15 @@ namespace Chess_Game.WPF
 {
     public static class Board
     {
-        public static bool StepPlayer { get; set; } = true;
+        public static bool GameIsOpen { get; set; } = false;
+        public static bool StepPlayer { get; set; } 
         public static bool IsClick { get; set; } = false;
         public static Cell[,] Field { get; set; } = new Cell[8, 8];
         public static int[] XY { get; set; } = new int[2];
         public static void GetBoard()
         {
-            for(var i = 0; i < 8; i++)
+            
+            for (var i = 0; i < 8; i++)
             {
                 for(var j = 0; j < 8; j++)
                 {
@@ -31,6 +33,9 @@ namespace Chess_Game.WPF
                 }
             }
         }
+        public static string GetImage(Roles role, Logic.Colors color)
+            =>$"data/Figures/{role}/{color}.png";
+
     }
     
 

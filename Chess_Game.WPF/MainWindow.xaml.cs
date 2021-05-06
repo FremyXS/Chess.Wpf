@@ -47,7 +47,6 @@ namespace Chess_Game.WPF
 
         private void NewGameClick(object sender, RoutedEventArgs e)
         {
-            BoardModel.GetStartBoard();
             var game = new InputNames();
             Close();
             game.Show();

@@ -24,9 +24,20 @@ namespace Chess_Game.WPF
         public ContinueWindow()
         {
             this.Loaded += ContinueWindow_Loaded;
+            this.Closing += ContinueWindow_Closing;
             InitializeComponent();
+        }
+
+        private void ContinueWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!Board.GameIsOpen)
+            {
+                var main = new MainWindow();
+                main.Show();
+            }
 
         }
+
         private void ContinueWindow_Loaded(object sender, RoutedEventArgs e)
         {
             foreach (var i in Directory.GetDirectories("data/Saves"))
