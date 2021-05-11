@@ -14,6 +14,7 @@ namespace Chess_Game.Logic
         {
             DiffY = new List<int>();
             DiffX = new List<int>();
+
             switch (figur)
             {
                 case Roles.King:
@@ -86,5 +87,6 @@ namespace Chess_Game.Logic
                 DiffY.Add(i); DiffX.Add(i);
             }
         }
+
     }
 }
