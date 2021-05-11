@@ -54,13 +54,13 @@ namespace Chess_Game.WPF
                 {
                     Board.Field[i, j].Rect.Height = size;
                     Board.Field[i, j].Rect.Width = size;
-                    Board.Field[i, j].image.Height = size;
-                    Board.Field[i, j].image.Width = size;
-                    Board.Field[i, j].image.SetValue(Canvas.LeftProperty, (j + 1) * size + x);
-                    Board.Field[i, j].image.SetValue(Canvas.TopProperty, (i) * size + y);
+                    Board.Field[i, j].FigureImage.Height = size;
+                    Board.Field[i, j].FigureImage.Width = size;
+                    Board.Field[i, j].FigureImage.SetValue(Canvas.LeftProperty, (j + 1) * size + x);
+                    Board.Field[i, j].FigureImage.SetValue(Canvas.TopProperty, (i) * size + y);
 
                     FieldCanvas.Children.Add(Board.Field[i, j].Rect);
-                    FieldCanvas.Children.Add(Board.Field[i, j].image);
+                    FieldCanvas.Children.Add(Board.Field[i, j].FigureImage);
 
                     Canvas.SetTop(Board.Field[i, j].Rect, (i) * size + y);
                     Canvas.SetLeft(Board.Field[i, j].Rect, (j + 1) * size + x);

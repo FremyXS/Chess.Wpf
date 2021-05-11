@@ -17,18 +17,17 @@ namespace Chess_Game.WPF
 {
     public class Cell
     {
-        private bool IsClick { get; set; } = false;
-        private bool IsFilled { get;}
+        public bool IsClick { get; set; } = false;
+        public bool IsFilled { get;}
         public Rectangle Rect { get; set; }
         private Logic.Figure Figure { get; set; } 
-        public Label FigureLabel { get; set; }
         private int CoorX { get;}
         private int CoorY { get;}
-        public Image image { get; set; }
-        public Cell(int coorX, int coorY)
+        public Image FigureImage { get; set; }
+        public Cell(int coorY, int coorX)
         {
-            CoorX = coorY; 
-            CoorY = coorX;
+            CoorX = coorX; 
+            CoorY = coorY;
 
             IsFilled = CoorY % 2 == 0 ? CoorX % 2 == 0 : CoorX % 2 != 0;
 
@@ -38,18 +37,18 @@ namespace Chess_Game.WPF
                 Stroke = Brushes.Black,
             };                                 
 
-            Figure = BoardModel.Board[coorX, coorY] ?? null;
+            Figure = BoardModel.Board[CoorY, CoorX] ?? null;
 
-            image = new Image
+            FigureImage = new Image
             {
-                Source = BoardModel.Board[coorX, coorY]!=null?
+                Source = BoardModel.Board[CoorY, CoorX]!=null?
                     BitmapFrame.Create(new Uri(Board.GetImage(Figure.Role, Figure.Color) , UriKind.Relative)) : null,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
             };
 
             Rect.MouseLeftButtonDown += Cell_MouseLeftButtonDown;
-            image.MouseLeftButtonDown += Cell_MouseLeftButtonDown;
+            FigureImage.MouseLeftButtonDown += Cell_MouseLeftButtonDown;
 
         }
 
@@ -87,7 +86,7 @@ namespace Chess_Game.WPF
                     Rect.Fill = IsFilled ? Settings.ColorOne : Settings.ColorTwo;
                     Board.IsClick = false;
                     IsClick = false;
-                    DeleteIsClick();
+                    Board.DeleteIsClick();
                 }
                 else if (IsClick && Figure != null && Figure.Color == antiColor)
                 {
@@ -100,7 +99,7 @@ namespace Chess_Game.WPF
 
                     GetMoving();
 
-                    CheckWin(dedFigure);
+                    Board.CheckWin(dedFigure);
 
                     Counter.UpdateCounter();
 
@@ -115,15 +114,15 @@ namespace Chess_Game.WPF
             Figure = Board.Field[Board.XY[0], Board.XY[1]].Figure;
             Board.Field[Board.XY[0], Board.XY[1]].Figure = null;
 
-            image.Source = Board.Field[Board.XY[0], Board.XY[1]].image.Source;
-            Board.Field[Board.XY[0], Board.XY[1]].image.Source = null;
+            FigureImage.Source = Board.Field[Board.XY[0], Board.XY[1]].FigureImage.Source;
+            Board.Field[Board.XY[0], Board.XY[1]].FigureImage.Source = null;
 
             Board.Field[Board.XY[0], Board.XY[1]].IsClick = false;
             Board.IsClick = false;
             Board.Field[Board.XY[0], Board.XY[1]].Rect.Fill =
                 Board.Field[Board.XY[0], Board.XY[1]].IsFilled ? Settings.ColorOne : Settings.ColorTwo;
 
-            DeleteIsClick();
+            Board.DeleteIsClick();
 
             Board.StepPlayer = !Board.StepPlayer;
         }
@@ -216,41 +215,6 @@ namespace Chess_Game.WPF
                     transfer = 0;
                 }
             }
-        }
-        private void DeleteIsClick()
-        {
-            foreach (var cell in Board.Field)
-            {
-                if (cell.IsClick)
-                {
-                    cell.IsClick = false;
-                    cell.Rect.Fill = cell.IsFilled ? Settings.ColorOne : Settings.ColorTwo;
-                }
-            }
-        }
-        private void CheckWin(Logic.Figure figure)
-        {
-            if (figure.Role == Roles.King)
-            {
-                if (figure.Color == Logic.Colors.White)
-                {
-                    GetWin(BoardModel.PlayerTwo);
-                }
-                else
-                {
-                    GetWin(BoardModel.PlayerOne);
-                }
-            }
-        }
-        private void GetWin(Player player)
-        {
-            player.Win();
-
-            MessageBox.Show($"Победил игрок:{player.Name}");
-
-            BoardModel.GetStartBoard();
-            Board.GetBoard();
-            WpfDrawer.GrawCanvas();
         }
     }
 }

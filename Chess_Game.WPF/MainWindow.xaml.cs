@@ -47,9 +47,9 @@ namespace Chess_Game.WPF
 
         private void NewGameClick(object sender, RoutedEventArgs e)
         {
-            var game = new InputNames();
+            var inputNames = new InputNames();
             Close();
-            game.Show();
+            inputNames.Show();
         }
 
         private void ContinueClick(object sender, RoutedEventArgs e)

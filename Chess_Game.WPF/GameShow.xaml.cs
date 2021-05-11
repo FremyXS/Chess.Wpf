@@ -29,18 +29,14 @@ namespace Chess_Game.WPF
             new Counter(counterGrid);
 
             this.Closing += MainWindow_Closing;
-            this.Loaded += GameShow_Loaded;
         }
 
-        private void GameShow_Loaded(object sender, RoutedEventArgs e)
-        {
-            Board.StepPlayer = true;
-        }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             Info.SaveGame(BoardModel.PlayerOne.Name, BoardModel.PlayerTwo.Name);
             Info.SavePlayers(BoardModel.PlayerOne, BoardModel.PlayerTwo);
+            Info.SaveStepPlayer(Board.StepPlayer, BoardModel.PlayerOne.Name, BoardModel.PlayerTwo.Name);
             Board.GameIsOpen = false;
             var win = new MainWindow();
             win.Show();
