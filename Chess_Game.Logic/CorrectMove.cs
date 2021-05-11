@@ -14,6 +14,7 @@ namespace Chess_Game.Logic
         {
             DiffY = new List<int>();
             DiffX = new List<int>();
+
             switch (figur)
             {
                 case Roles.King:
@@ -60,15 +61,15 @@ namespace Chess_Game.Logic
         {
             for (var i = 1; i < 8; i++)
             {
+                DiffY.Add(0); DiffX.Add(0);
+            }
+            for (var i = 1; i < 8; i++)
+            {
                 DiffY.Add(i); DiffX.Add(0);
             }
             for (int i = 1; i < 8; i++)
             {
                 DiffY.Add(0); DiffX.Add(i);
-            }
-            for (var i = 1; i < 8; i++)
-            {
-                DiffY.Add(0); DiffX.Add(0);
             }
         }
         private static void GetMoveQueen()
@@ -86,5 +87,6 @@ namespace Chess_Game.Logic
                 DiffY.Add(i); DiffX.Add(i);
             }
         }
+
     }
 }

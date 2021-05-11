@@ -17,25 +17,25 @@ using System.Windows.Controls.Primitives;
 
 namespace Chess_Game.WPF
 {
-    public class Caunter
+    public class Counter
     {
-        private static UniformGrid Counter { get; set; }
-        public Caunter(UniformGrid counter)
+        private static UniformGrid CounterGrid { get; set; }
+        public Counter(UniformGrid counter)
         {
-            Counter = counter;
+            CounterGrid = counter;
             UpdateCounter();
         }
         public static void UpdateCounter()
         {
-            Counter.Children.Clear();
+            CounterGrid.Children.Clear();
 
             GetOnePlayer(BoardModel.PlayerOne);
             GetOnePlayer(BoardModel.PlayerTwo);
         }
         private static void GetOnePlayer(Player player)
         {
-            Counter.Children.Add(GetNamePlayer(player));
-            Counter.Children.Add(GetPointsPlayer(player));
+            CounterGrid.Children.Add(GetNamePlayer(player));
+            CounterGrid.Children.Add(GetPointsPlayer(player));
         }
         private static Label GetNamePlayer(Player player)
         {

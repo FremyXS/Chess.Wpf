@@ -31,7 +31,9 @@ namespace Chess_Game.WPF
         private void Names_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Info.LoadGame(Players[1], Players[2]);
+            Board.StepPlayer = Info.LoadStepPlayer(Players[1], Players[2]);
             var game = new GameShow();
+            Board.GameIsOpen = true;
             Cw.Close();
             game.Show();
             

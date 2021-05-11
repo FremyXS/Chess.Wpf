@@ -7,7 +7,6 @@ namespace Chess_Game.Logic
     {
         public Roles Role { get; }       
         public Colors Color { get; }
-        public bool IsActive { get; } = true;
         public Figure(Roles role, Colors color)
         {
             Role = role;

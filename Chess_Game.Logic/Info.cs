@@ -25,6 +25,17 @@ namespace Chess_Game.Logic
             BoardModel.PlayerOne = LoadPlayers(nameOne, nameTwo);
             BoardModel.PlayerTwo = LoadPlayers(nameOne, nameTwo, "playerTwo");
         }
+        public static void SaveStepPlayer(bool stepPlayer, string namePlayerOne, string namePlayerTwo)
+        {
+            string step = JsonConvert.SerializeObject(stepPlayer, Formatting.Indented);
+            File.WriteAllText($"data/Saves/{namePlayerOne}_{namePlayerTwo}/step.txt", step);
+        }
+        public static bool LoadStepPlayer(string nameOne, string nameTwo)
+        {
+            string txtInfo = File.ReadAllText($"data/Saves/{nameOne}_{nameTwo}/step.txt");
+            var tes = JsonConvert.DeserializeObject<bool>(txtInfo);
+            return tes;
+        }
         public static void SavePlayers(Player playerOne, Player playerTwo)
         {
             string platerOneInfo = JsonConvert.SerializeObject(playerOne, Formatting.Indented);

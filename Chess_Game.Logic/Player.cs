@@ -9,15 +9,10 @@ namespace Chess_Game.Logic
     public class Player
     {
         public string Name{ get;}
-        public int CountFigures { get; set; } = 16;
         public int CountPoints { get; set; } = 0;
         public Player(string name)
         {
             Name = name;
-        }
-        public void DropFigure()
-        {
-            CountFigures--;
         }
         public void AddPoints(Roles role)
         {
@@ -44,6 +39,10 @@ namespace Chess_Game.Logic
                 default:
                     break;
             }
+        }
+        public void Win()
+        {
+            CountPoints += 200;
         }
     }
 }

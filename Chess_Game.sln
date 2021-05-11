@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess_Game.WPF", "Chess_Game.WPF\Chess_Game.WPF.csproj", "{8420012E-9E3A-40F4-A0DF-46CA02956E6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess_Game.WPF", "Chess_Game.WPF\Chess_Game.WPF.csproj", "{8420012E-9E3A-40F4-A0DF-46CA02956E6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess_Game.Logic", "Chess_Game.Logic\Chess_Game.Logic.csproj", "{0B872759-BAEE-45AE-8A74-D51B69835949}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess_Game.Logic", "Chess_Game.Logic\Chess_Game.Logic.csproj", "{0B872759-BAEE-45AE-8A74-D51B69835949}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess_Game.Tests", "Chess_Game.Tests\Chess_Game.Tests.csproj", "{A02582AE-C1DA-482C-9ADE-18DD35835009}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0B872759-BAEE-45AE-8A74-D51B69835949}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B872759-BAEE-45AE-8A74-D51B69835949}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B872759-BAEE-45AE-8A74-D51B69835949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A02582AE-C1DA-482C-9ADE-18DD35835009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A02582AE-C1DA-482C-9ADE-18DD35835009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A02582AE-C1DA-482C-9ADE-18DD35835009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A02582AE-C1DA-482C-9ADE-18DD35835009}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
