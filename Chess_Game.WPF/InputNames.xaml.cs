@@ -34,6 +34,7 @@ namespace Chess_Game.WPF
                 BoardModel.PlayerTwo = new Player(namePlayerTwo.Text);
 
                 Board.GameIsOpen = true;
+                Board.StepPlayer = true;
                 BoardModel.GetStartBoard();
 
                 var game = new GameShow();

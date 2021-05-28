@@ -95,11 +95,11 @@ namespace Chess_Game.WPF
                     else 
                         BoardModel.PlayerTwo.AddPoints(Figure.Role);
 
-                    Logic.Figure dedFigure = Figure;
+                    Logic.Figure deadFigure = Figure;
 
                     GetMoving();
 
-                    Board.CheckWin(dedFigure);
+                    Board.CheckWin(deadFigure);
 
                     Counter.UpdateCounter();
 
@@ -177,8 +177,7 @@ namespace Chess_Game.WPF
         {
             if (Board.Field[CoorY + step, CoorX].Figure == null)
             {
-                Board.Field[CoorY + step, CoorX].Rect.Fill = Settings.ColorStep;
-                Board.Field[CoorY + step, CoorX].IsClick = true;
+                FillingCell(CoorY + step, CoorX);
             }
         }
         private void IsEnemy(int diffY, int diffX)
@@ -188,8 +187,7 @@ namespace Chess_Game.WPF
                 if (Board.Field[diffY, diffX].Figure != null 
                 && Board.Field[diffY, diffX].Figure.Color == (Board.StepPlayer ? Logic.Colors.Black : Logic.Colors.White))
                 {
-                    Board.Field[diffY, diffX].IsClick = true;
-                    Board.Field[diffY, diffX].Rect.Fill = Settings.ColorEnemy;
+                    FillingEnemy(diffY, diffX);
                 }
             }
         }
@@ -199,22 +197,30 @@ namespace Chess_Game.WPF
             {
                 if (Board.Field[diffY, diffX].Figure == null)
                 {
-                    Board.Field[diffY, diffX].Rect.Fill = Settings.ColorStep;
-                    Board.Field[diffY, diffX].IsClick = true;
+                    FillingCell(diffY, diffX);
                     transfer++;
                 }
                 else
                 {
                     if(Board.Field[diffY, diffX].Figure.Color == (Board.StepPlayer? Logic.Colors.Black : Logic.Colors.White))
                     {
-                        Board.Field[diffY, diffX].Rect.Fill = Settings.ColorEnemy;
-                        Board.Field[diffY, diffX].IsClick = true;
+                        FillingEnemy(diffY, diffX);
                     }
 
                     i += CorrectMove.DiffX.Count / 3 - transfer - 1;
                     transfer = 0;
                 }
             }
+        }
+        private void FillingCell(int y, int x)
+        {
+            Board.Field[y, x].Rect.Fill = Settings.ColorStep;
+            Board.Field[y,x].IsClick = true;
+        }
+        private void FillingEnemy(int y, int x)
+        {
+            Board.Field[y,x].Rect.Fill = Settings.ColorEnemy;
+            Board.Field[y,x].IsClick = true;
         }
     }
 }

@@ -94,9 +94,10 @@ namespace Chess_Game.WPF
         }
         private void Offset(int ind)
         {
-            for(int i = 3; i > ind; i--)
+
+            for(var i = TopPlayers.Length-1; i > ind; i--)
             {
-                TopPlayers[i + 1] = TopPlayers[i];
+                TopPlayers[i] = TopPlayers[i - 1];
             }
         }
         
